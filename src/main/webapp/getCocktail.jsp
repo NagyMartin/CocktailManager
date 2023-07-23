@@ -10,9 +10,9 @@
 <body>
     <%
     JdbcCocktailRepository repository = new JdbcCocktailRepository();
-    int cocktailId = Integer.parseInt(request.getParameter("id"));
+    int userId = Integer.parseInt(request.getParameter("userId"));
+    int cocktailId = Integer.parseInt(request.getParameter("cocktailId"));
     Cocktail cocktail = repository.getCocktail(cocktailId);
-    int userId = (Integer)session.getAttribute("userId");
     %>
 <h1> <%= cocktail.getName() %></h1>
 <br>
@@ -54,6 +54,9 @@
     </form>
     <br>
     </br>
-    <input type="button" value="Back to Cocktails list!" onclick="window.location='getAllCocktails.jsp'" >
+    <form action ="getAllCocktails.jsp">
+    <input type="hidden" id="userId" name="userId" value= <%= userId %>>
+    <input type="submit" value="Back to cocktails list!">
+    </form>
 </body>
 </html>

@@ -27,6 +27,7 @@
             <th>ID</th>
             <th>Cocktail Name</th>
             <th>Remove from Favorites</th>
+            <th>Start the mix</th>
         </tr>
         <% JdbcUsersCocktailsRepository userCocktailsRepository = new JdbcUsersCocktailsRepository();
            List<Cocktail> cocktailList = userCocktailsRepository.showCocktailsFromUserList(id);
@@ -35,14 +36,26 @@
         <tr>
         <td><%= cocktail.getId() %></td>
         <td><%= cocktail.getName() %></td>
-        <td><input type="button" value="Remove"
-            onclick=<%= userCocktailsRepository.removeCocktailFromUserList(id, cocktail.getId())%>
+        <td><form action ="deleteCocktailFromUserList.jsp">
+            <input type="hidden" id="userId" name="userId" value= <%= id %>>
+            <input type="hidden" id="cocktailId" name="cocktailId" value= <%= cocktail.getId() %>>
+            <input type="submit" value="Remove">
+            </form>
+        </td>
+        <td><form action ="getCocktail.jsp">
+            <input type="hidden" id="userId" name="userId" value= <%= id %>>
+            <input type="hidden" id="cocktailId" name="cocktailId" value= <%= cocktail.getId() %>>
+            <input type="submit" value="Start!">
+            </form>
         </td>
         </tr>
         <% } %>
     </table>
     <br></br>
-    <input type="button" value="Cocktails list!" onclick="window.location='getAllCocktails.jsp'" >
+    <form action ="getAllCocktails.jsp">
+    <input type="hidden" id="userId" name="userId" value= <%= id %>>
+    <input type="submit" value="Cocktail List">
+    </form>
     <br>
     </br>
     <input type="button" value="Return to main page!" onclick="window.location='index.jsp'">

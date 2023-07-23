@@ -40,8 +40,8 @@ public class JdbcUsersCocktailsRepository {
     public boolean removeCocktailFromUserList(int userID, int cocktailID) {
         boolean deleteIsMade = false;
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users_cocktails (users_id, " +
-                     "cocktails_id) VALUES (?, ?)")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users_cocktails WHERE " +
+                     "users_id = ? AND cocktails_id = ?")) {
             preparedStatement.setInt(1, userID);
             preparedStatement.setInt(2, cocktailID);
             preparedStatement.executeUpdate();

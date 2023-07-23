@@ -1,7 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.List" %>
+<%@ page import = "java.io.*,java.util.*" %>
 <%@ page import="com.project.CocktailManager.model.Cocktail" %>
+<%@ page import="com.project.CocktailManager.model.User" %>
 <%@ page import="com.project.CocktailManager.repository.JdbcCocktailRepository" %>
+<%@ page import="com.project.CocktailManager.repository.JdbcUserRepository" %>
 <%@ page session="true"%>
 <html>
 <head>
@@ -13,23 +16,24 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Start the mix</th>
         </tr>
         <% JdbcCocktailRepository repository = new JdbcCocktailRepository();
+            int id = Integer.parseInt(request.getParameter("userId"));
             List<Cocktail> cocktails = repository.getAllCocktails();
             for (Cocktail cocktail: cocktails){
             %>
             <tr>
                 <td><%= cocktail.getId() %></td>
                 <td><%= cocktail.getName() %></td>
+                <td><form action ="getCocktail.jsp">
+                    <input type="hidden" id="userId" name="userId" value= <%= id %>>
+                    <input type="hidden" id="cocktailId" name="cocktailId" value= <%= cocktail.getId() %>>
+                    <input type="submit" value="Start!">
+                    </form>
+                </td>
             </tr>
             <% } %>
     </table>
-    <form action ="getCocktail.jsp" <label>Insert the cocktail ID </label>
-            <div class ="form-outline mb-4">
-                <input type="text" name="id" value="Cocktail ID" onclick="this.value=''"/><br/>
-            </div>
-        <br/>
-        <input type="submit" value="Start the mix!" class="btn btn-primary btn-block"/>
-        </form>
 </body>
 </html>
