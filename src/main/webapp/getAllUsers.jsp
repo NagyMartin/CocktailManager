@@ -13,6 +13,7 @@
         <tr>
             <th>ID</th>
             <th>User Name</th>
+            <th>Password</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email Address</th>
@@ -25,6 +26,7 @@
             <tr>
                 <td><%= user.getId() %></td>
                 <td><%= user.getUserName() %></td>
+                <td><%= user.getPassword() %></td>
                 <td><%= user.getFirstName() %></td>
                 <td><%= user.getLastName() %></td>
                 <td><%= user.getEmailAddress() %></td>

@@ -13,6 +13,7 @@ public class GetUserServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         JdbcUserRepository userRepository = new JdbcUserRepository();
         int id = Integer.parseInt(request.getParameter("id"));
-        userRepository.getUser(id);
+        String password = request.getParameter("password");
+        userRepository.getUser(id, password);
     }
 }

@@ -39,7 +39,32 @@ public class JdbcUserRepository {
         }
     }
 
-    public User getUser(int id) {
+    public User getUser(int id, String password) {
+        User user = new User();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE id = ? AND password = ?")) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String userName = resultSet.getString("user_name");
+                String firstName = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
+                String emailAddress = resultSet.getString("email_address");
+                user.setId(id);
+                user.setUserName(userName);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setEmailAddress(emailAddress);
+                user.setPassword(password);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    public User getUserByID(int id) {
         User user = new User();
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE id = ?")) {
@@ -50,15 +75,17 @@ public class JdbcUserRepository {
                 String firstName = resultSet.getString("first_name");
                 String lastName = resultSet.getString("last_name");
                 String emailAddress = resultSet.getString("email_address");
-
+                String password = resultSet.getString("password");
                 user.setUserName(userName);
                 user.setFirstName(firstName);
                 user.setLastName(lastName);
                 user.setEmailAddress(emailAddress);
+                user.setPassword(password);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } return user;
+        }
+        return user;
     }
 
     public List<User> getAllUsers() {
@@ -72,7 +99,8 @@ public class JdbcUserRepository {
                 String firstName = resultSet.getString("first_name");
                 String lastName = resultSet.getString("last_name");
                 String emailAddress = resultSet.getString("email_address");
-                User user = new User(id, userName, firstName, lastName, emailAddress);
+                String password = resultSet.getString("password");
+                User user = new User(id, userName, firstName, lastName, emailAddress, password);
                 userList.add(user);
             }
         } catch (SQLException e) {
@@ -85,10 +113,11 @@ public class JdbcUserRepository {
         boolean updateIsMade = false;
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET user_name = ?, " +
-                     "email_address = ? WHERE id = ?")) {
+                     "email_address = ?, password = ? WHERE id = ?")) {
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getEmailAddress());
-            preparedStatement.setInt(3, user.getId());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setInt(4, user.getId());
             preparedStatement.executeUpdate();
             updateIsMade = true;
         } catch (SQLException e) {

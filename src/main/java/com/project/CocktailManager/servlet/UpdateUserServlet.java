@@ -15,8 +15,9 @@ public class UpdateUserServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
         JdbcUserRepository jdbcUserRepository = new JdbcUserRepository();
         int id = Integer.parseInt(request.getParameter("id"));
+        String password = request.getParameter("password");
         try {
-            User user = jdbcUserRepository.getUser(id);
+            User user = jdbcUserRepository.getUser(id, password);
             String userName = request.getParameter("user_name");
             String emailAddress = request.getParameter("email_address");
             user.setUserName(userName);

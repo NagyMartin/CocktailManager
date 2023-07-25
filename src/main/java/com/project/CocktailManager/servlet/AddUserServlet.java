@@ -18,8 +18,8 @@ public class AddUserServlet extends HttpServlet {
         String firstName = request.getParameter("first_name");
         String lastName = request.getParameter("last_name");
         String emailAddress = request.getParameter("email_address");
-
-        User user = new User(userName, firstName, lastName, emailAddress);
+        String password = request.getParameter("password");
+        User user = new User(userName, firstName, lastName, emailAddress, password);
         repository.addUser(user);
         response.getOutputStream().println("User created!");
     }

@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import = "java.io.*,java.util.*" %>
 <%@ page session="true"%>
+<%@ page errorPage="error.jsp"%>
 <%@ page import="com.project.CocktailManager.model.User" %>
 <%@ page import="com.project.CocktailManager.model.Cocktail" %>
 <%@ page import="com.project.CocktailManager.repository.JdbcUserRepository" %>
@@ -12,22 +13,26 @@
 </head>
 <body>
 <h1>Welcome to the mix!</h1>
-    <%  JdbcUserRepository userRepository = new JdbcUserRepository();
-        int id = Integer.parseInt(request.getParameter("id"));
-        User user = userRepository.getUser(id);
-        session.setAttribute("userId",id);
-        %>
-    <p> Hello there,
-        <%= user.getUserName() %>
-    </p>
+    <%  int id = Integer.parseInt(request.getParameter("id"));
+        String password = request.getParameter("password");
+        if(id == 0 || "".equals(id) || password == null || "".equals(password)){
+           throw new ServletException("Data entered is empty");
+        }
+        JdbcUserRepository userRepository = new JdbcUserRepository();
+        User user = userRepository.getUser(id, password);
+        if(user.getUserName() == null){
+            throw new Exception("User does not exist!");
+        }
+    %>
+<h2> Hello there, <%= user.getUserName() %></h2>
     <br></br>
     <p> Favorite Cocktails </p>
     <table border="1" class = "table table-striped table-hover w-50 p-3">
         <tr>
             <th>ID</th>
             <th>Cocktail Name</th>
-            <th>Remove from Favorites</th>
             <th>Start the mix</th>
+            <th>Remove from Favorites</th>
         </tr>
         <% JdbcUsersCocktailsRepository userCocktailsRepository = new JdbcUsersCocktailsRepository();
            List<Cocktail> cocktailList = userCocktailsRepository.showCocktailsFromUserList(id);
@@ -36,16 +41,16 @@
         <tr>
         <td><%= cocktail.getId() %></td>
         <td><%= cocktail.getName() %></td>
-        <td><form action ="deleteCocktailFromUserList.jsp">
-            <input type="hidden" id="userId" name="userId" value= <%= id %>>
-            <input type="hidden" id="cocktailId" name="cocktailId" value= <%= cocktail.getId() %>>
-            <input type="submit" value="Remove">
-            </form>
-        </td>
         <td><form action ="getCocktail.jsp">
             <input type="hidden" id="userId" name="userId" value= <%= id %>>
             <input type="hidden" id="cocktailId" name="cocktailId" value= <%= cocktail.getId() %>>
             <input type="submit" value="Start!">
+            </form>
+        </td>
+        <td><form action ="deleteCocktailFromUserList.jsp">
+            <input type="hidden" id="userId" name="userId" value= <%= id %>>
+            <input type="hidden" id="cocktailId" name="cocktailId" value= <%= cocktail.getId() %>>
+            <input type="submit" value="Remove">
             </form>
         </td>
         </tr>

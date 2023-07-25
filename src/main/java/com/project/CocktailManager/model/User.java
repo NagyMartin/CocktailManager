@@ -26,15 +26,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String emailAddress;
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
+    private String password;
     @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_cocktails",
@@ -48,25 +40,28 @@ public class User {
     }
 
 
-    public User(String userName, String firstName, String lastName, String emailAddress) {
+    public User(String userName, String firstName, String lastName, String emailAddress, String password) {
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
+        this.password = password;
     }
 
-    public User(int id, String userName, String firstName, String lastName, String emailAddress) {
+    public User(int id, String userName, String firstName, String lastName, String emailAddress, String password) {
         this.id = id;
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
+        this.password = password;
     }
 
-    public User(int id, String userName, String emailAddress) {
+    public User(int id, String userName, String emailAddress, String password) {
         this.id = id;
         this.userName = userName;
         this.emailAddress = emailAddress;
+        this.password = password;
     }
 
 }
