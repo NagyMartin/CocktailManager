@@ -15,12 +15,14 @@ public class UserDto {
     public UserDto(){
 
     }
+
     public static UserDto createUserDto(User user) {
         UserDto userDto = new UserDto();
         userDto.setUserName(user.getUserName());
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());
         userDto.setEmailAddress(user.getEmailAddress());
+        userDto.setPassword(user.getPassword());
         return userDto;
     }
 }

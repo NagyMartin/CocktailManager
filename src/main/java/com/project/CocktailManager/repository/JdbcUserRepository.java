@@ -28,11 +28,12 @@ public class JdbcUserRepository {
     public void addUser(User user) {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users " +
-                     "(user_name, first_name, last_name, email_address) VALUES (?, ?, ?, ?)")) {
+                     "(user_name, first_name, last_name, email_address, password) VALUES (?, ?, ?, ?, ?)")) {
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getFirstName());
             preparedStatement.setString(3, user.getLastName());
             preparedStatement.setString(4, user.getEmailAddress());
+            preparedStatement.setString(5, user.getPassword());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
