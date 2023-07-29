@@ -1,7 +1,6 @@
 package com.project.CocktailManager.servlet;
 
-import com.project.CocktailManager.model.User;
-import com.project.CocktailManager.repository.JdbcUserRepository;
+import com.project.CocktailManager.repositoryDao.JdbcUserRepository;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="com.project.CocktailManager.model.User, com.project.CocktailManager.repository.JdbcUserRepository" %>
+<%@ page import="com.project.CocktailManager.model.User, com.project.CocktailManager.repositoryDao.JdbcUserRepository" %>
 <%@ page session="true"%>
+<%@ page errorPage="error.jsp"%>
 <html>
 <head>
 <title>Cocktail Manager Delete User</title>

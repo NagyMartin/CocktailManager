@@ -26,10 +26,10 @@
         <br/>
         <input type="submit" value="Create profile" class="btn btn-primary btn-block"/>
     </form>
-    <input type="button" value="Click here to return to main page!" onclick="window.location='index.jsp'">
+    <input type="button" value="Return to main page!" onclick="window.location='index.jsp'">
     <script type="text/javascript">
     function passCondition() {
-    alert("Password must contain: A capital(uppercase), lowercase letter; A number; A special character. "
+    alert("Password must contain: A capital(uppercase) & lowercase letter; A number; A special character. "
             + "The length should be between 5-20 characters.");
     }
     function nameCondition() {

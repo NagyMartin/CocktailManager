@@ -5,8 +5,8 @@
 <%@ page errorPage="error.jsp"%>
 <%@ page import="com.project.CocktailManager.model.User" %>
 <%@ page import="com.project.CocktailManager.model.Cocktail" %>
-<%@ page import="com.project.CocktailManager.repository.JdbcUserRepository" %>
-<%@ page import="com.project.CocktailManager.repository.JdbcUsersCocktailsRepository" %>
+<%@ page import="com.project.CocktailManager.repositoryDao.JdbcUserRepository" %>
+<%@ page import="com.project.CocktailManager.repositoryDao.JdbcUsersCocktailsRepository" %>
 <html>
 <head>
 <title>Cocktail Manager User Page</title>
@@ -21,7 +21,7 @@
         JdbcUserRepository userRepository = new JdbcUserRepository();
         User user = userRepository.getUser(id, password);
         if(user.getUserName() == null){
-            throw new Exception("User does not exist!");
+            throw new RuntimeException("User does not exist!");
         }
     %>
 <h2> Hello there, <%= user.getUserName() %></h2>

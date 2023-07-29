@@ -1,4 +1,4 @@
-package com.project.CocktailManager.repository;
+package com.project.CocktailManager.repositoryDao;
 
 import com.project.CocktailManager.model.Cocktail;
 

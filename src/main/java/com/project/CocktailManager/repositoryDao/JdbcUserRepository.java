@@ -1,4 +1,4 @@
-package com.project.CocktailManager.repository;
+package com.project.CocktailManager.repositoryDao;
 
 import com.project.CocktailManager.model.User;
 
@@ -11,10 +11,10 @@ public class JdbcUserRepository {
         getConnection();
     }
 
-    public static final String JDBC_Driver = "org.postgresql.Driver";
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/cocktailDb";
-    private static final String DB_USER = "postgres";
-    private static final String DB_PASSWORD = "root";
+    public static final java.lang.String JDBC_Driver = "org.postgresql.Driver";
+    private static final java.lang.String DB_URL = "jdbc:postgresql://localhost:5432/cocktailDb";
+    private static final java.lang.String DB_USER = "postgres";
+    private static final java.lang.String DB_PASSWORD = "root";
 
     public Connection getConnection() {
         try {
@@ -28,12 +28,13 @@ public class JdbcUserRepository {
     public void addUser(User user) {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users " +
-                     "(user_name, first_name, last_name, email_address, password) VALUES (?, ?, ?, ?, ?)")) {
+                     "(user_name, first_name, last_name, email_address, password, user_type) VALUES (?, ?, ?, ?, ?, ?)")) {
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getFirstName());
             preparedStatement.setString(3, user.getLastName());
             preparedStatement.setString(4, user.getEmailAddress());
             preparedStatement.setString(5, user.getPassword());
+            preparedStatement.setString(6, "USER");
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,12 +53,14 @@ public class JdbcUserRepository {
                 String firstName = resultSet.getString("first_name");
                 String lastName = resultSet.getString("last_name");
                 String emailAddress = resultSet.getString("email_address");
+                String userType = resultSet.getString("user_type");
                 user.setId(id);
                 user.setUserName(userName);
                 user.setFirstName(firstName);
                 user.setLastName(lastName);
                 user.setEmailAddress(emailAddress);
                 user.setPassword(password);
+                user.setUserType(userType);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -96,12 +99,13 @@ public class JdbcUserRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                String userName = resultSet.getString("user_name");
-                String firstName = resultSet.getString("first_name");
-                String lastName = resultSet.getString("last_name");
-                String emailAddress = resultSet.getString("email_address");
-                String password = resultSet.getString("password");
-                User user = new User(id, userName, firstName, lastName, emailAddress, password);
+                java.lang.String userName = resultSet.getString("user_name");
+                java.lang.String firstName = resultSet.getString("first_name");
+                java.lang.String lastName = resultSet.getString("last_name");
+                java.lang.String emailAddress = resultSet.getString("email_address");
+                java.lang.String password = resultSet.getString("password");
+                String string = String.valueOf(resultSet.getString("user_type"));
+                User user = new User(id, userName, firstName, lastName, emailAddress, password, string);
                 userList.add(user);
             }
         } catch (SQLException e) {
@@ -119,6 +123,23 @@ public class JdbcUserRepository {
             preparedStatement.setString(2, user.getEmailAddress());
             preparedStatement.setString(3, user.getPassword());
             preparedStatement.setInt(4, user.getId());
+            preparedStatement.executeUpdate();
+            updateIsMade = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return updateIsMade;
+    }
+    public boolean updateUserByAdmin(User user) {
+        boolean updateIsMade = false;
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET user_name = ?, " +
+                     "email_address = ?, password = ?, user_type = ? WHERE id = ?")) {
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getEmailAddress());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setString(4, user.getUserType());
+            preparedStatement.setInt(5, user.getId());
             preparedStatement.executeUpdate();
             updateIsMade = true;
         } catch (SQLException e) {

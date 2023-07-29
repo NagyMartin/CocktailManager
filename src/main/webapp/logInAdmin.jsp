@@ -3,13 +3,14 @@
 <%@ page import = "java.io.*,java.util.*" %>
 <%@ page errorPage="error.jsp"%>
 
+
 <html>
 <head>
-<title>Cocktail Manager - Login</title>
+<title>Cocktail Manager - Admin Login</title>
 </head>
 <body>
 <h1>Login</h1>
-    <form action="getUser.jsp">
+    <form action="getAdmin.jsp">
     <strong>User ID:</strong><input type="text" name="id"/><br/><br/>
     <strong>Password:</strong><input type="password" name="password"/><br/><br/>
     <input type="submit" value="Log in!" class="btn btn-primary btn-block"/>

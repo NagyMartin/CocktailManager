@@ -11,6 +11,7 @@ public class UserDto {
     private String lastName;
     private String emailAddress;
     private String password;
+    private String userType;
 
     public UserDto(){
 
@@ -23,6 +24,7 @@ public class UserDto {
         userDto.setLastName(user.getLastName());
         userDto.setEmailAddress(user.getEmailAddress());
         userDto.setPassword(user.getPassword());
+        userDto.setUserType(user.getUserType());
         return userDto;
     }
 }

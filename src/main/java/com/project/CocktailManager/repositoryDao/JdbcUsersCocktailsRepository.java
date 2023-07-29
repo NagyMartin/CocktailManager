@@ -1,4 +1,4 @@
-package com.project.CocktailManager.repository;
+package com.project.CocktailManager.repositoryDao;
 
 import java.sql.*;
 import java.util.ArrayList;

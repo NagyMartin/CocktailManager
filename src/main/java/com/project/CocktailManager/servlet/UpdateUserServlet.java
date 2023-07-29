@@ -2,7 +2,7 @@ package com.project.CocktailManager.servlet;
 
 
 import com.project.CocktailManager.model.User;
-import com.project.CocktailManager.repository.JdbcUserRepository;
+import com.project.CocktailManager.repositoryDao.JdbcUserRepository;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +16,7 @@ public class UpdateUserServlet extends HttpServlet {
         JdbcUserRepository jdbcUserRepository = new JdbcUserRepository();
         int id = Integer.parseInt(request.getParameter("id"));
         String password = request.getParameter("password");
+        String userType = request.getParameter("user_type");
         try {
             User user = jdbcUserRepository.getUser(id, password);
             String userName = request.getParameter("user_name");

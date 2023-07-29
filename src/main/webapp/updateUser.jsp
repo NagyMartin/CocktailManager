@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="com.project.CocktailManager.model.User" %>
-<%@ page import="com.project.CocktailManager.repository.JdbcUserRepository" %>
+<%@ page import="com.project.CocktailManager.repositoryDao.JdbcUserRepository" %>
 <%@ page session="true"%>
+<%@ page errorPage="error.jsp"%>
 <html>
 <head>
 <title>Cocktail Manager Edit User</title>
@@ -49,6 +50,6 @@
     </form>
     <br>
     </br>
-    <input type="button" value="Click here to return to main page!" onclick="window.location='index.jsp'">
+    <input type="button" value="Return to main page!" onclick="window.location='index.jsp'">
 </body>
 </html>

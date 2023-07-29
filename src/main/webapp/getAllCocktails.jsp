@@ -3,9 +3,10 @@
 <%@ page import = "java.io.*,java.util.*" %>
 <%@ page import="com.project.CocktailManager.model.Cocktail" %>
 <%@ page import="com.project.CocktailManager.model.User" %>
-<%@ page import="com.project.CocktailManager.repository.JdbcCocktailRepository" %>
-<%@ page import="com.project.CocktailManager.repository.JdbcUserRepository" %>
+<%@ page import="com.project.CocktailManager.repositoryDao.JdbcCocktailRepository" %>
+<%@ page import="com.project.CocktailManager.repositoryDao.JdbcUserRepository" %>
 <%@ page session="true"%>
+<%@ page errorPage="error.jsp"%>
 <html>
 <head>
 <title> Cocktail Manager Cocktails </title>
