@@ -9,7 +9,15 @@
 <title>Cocktail Manager Users</title>
 </head>
 <body>
-<h1>Users from Cocktail Manager</h1>
+    <%  JdbcUserRepository repository = new JdbcUserRepository();
+        int userAdminId = Integer.parseInt(request.getParameter("userId"));
+        User admin = repository.getUserByID(userAdminId);
+        String adminType = admin.getUserType();
+        if(!adminType.equals("ADMIN")){
+           throw new RuntimeException("User does not have permission");
+        }
+    %>
+<h1>Users from Cocktail Manager <%= admin.getUserName() %></h1>
     <table border="1" class = "table table-striped table-hover w-50 p-3">
         <tr>
             <th>ID</th>
@@ -22,8 +30,7 @@
             <th>Account Operations</th>
             <th>Change User Type</th>
         </tr>
-        <% JdbcUserRepository repository = new JdbcUserRepository();
-            List<User> users = repository.getAllUsers();
+        <%  List<User> users = repository.getAllUsers();
             for (User user: users){
             %>
             <tr>

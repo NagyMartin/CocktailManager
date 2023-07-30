@@ -17,13 +17,13 @@
 </head>
 <body>
 <h1>Welcome to the mix!</h1>
-     <% int id = Integer.parseInt(request.getParameter("id"));
+     <% String userName = request.getParameter("userName");
         String password = request.getParameter("password");
-        if(id == 0 || "".equals(id) || password == null || "".equals(password)){
+        if(userName == null || "".equals(userName) || password == null || "".equals(password)){
            throw new ServletException("Data entered is empty");
         }
         JdbcUserRepository userRepository = new JdbcUserRepository();
-        User admin = userRepository.getUser(id, password);
+        User admin = userRepository.getUser(userName, password);
         if(admin.getUserName() == null){
            throw new RuntimeException("User does not exist!");
         }
@@ -31,6 +31,7 @@
         if(!service.validateUserType(admin)){
             response.sendRedirect("index.jsp");
         }
+        int id = admin.getId();
      %>
 <h2> Hello there, admin <%= admin.getUserName() %></h2>
     <br></br>
@@ -65,8 +66,10 @@
             <% } %>
         </table><br></br>
 <h2>Get all users</h2>
-    <input type="button" value="See all users" onclick="window.location='getAllUsers.jsp'" >
-    <br></br>
+    <form action ="getAllUsers.jsp">
+    <input type="hidden" id="userId" name="userId" value= <%= id %>>
+    <input type="submit" value="See all users">
+    </form>
 <h2>Cocktails List</h2>
     <form action ="getAllCocktails.jsp">
     <input type="hidden" id="userId" name="userId" value= <%= id %>>

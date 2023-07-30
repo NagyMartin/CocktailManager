@@ -41,15 +41,15 @@ public class JdbcUserRepository {
         }
     }
 
-    public User getUser(int id, String password) {
+    public User getUser(String userName, String password) {
         User user = new User();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE id = ? AND password = ?")) {
-            preparedStatement.setInt(1, id);
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE user_name = ? AND password = ?")) {
+            preparedStatement.setString(1, userName);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                String userName = resultSet.getString("user_name");
+                int id = resultSet.getInt("id");
                 String firstName = resultSet.getString("first_name");
                 String lastName = resultSet.getString("last_name");
                 String emailAddress = resultSet.getString("email_address");
@@ -80,11 +80,13 @@ public class JdbcUserRepository {
                 String lastName = resultSet.getString("last_name");
                 String emailAddress = resultSet.getString("email_address");
                 String password = resultSet.getString("password");
+                String userType = resultSet.getString("user_type");
                 user.setUserName(userName);
                 user.setFirstName(firstName);
                 user.setLastName(lastName);
                 user.setEmailAddress(emailAddress);
                 user.setPassword(password);
+                user.setUserType(userType);
             }
         } catch (SQLException e) {
             e.printStackTrace();

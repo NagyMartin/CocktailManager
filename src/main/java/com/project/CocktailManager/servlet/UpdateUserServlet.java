@@ -14,13 +14,13 @@ public class UpdateUserServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
         JdbcUserRepository jdbcUserRepository = new JdbcUserRepository();
-        int id = Integer.parseInt(request.getParameter("id"));
+        String userName = request.getParameter("user_name");
         String password = request.getParameter("password");
-        String userType = request.getParameter("user_type");
         try {
-            User user = jdbcUserRepository.getUser(id, password);
-            String userName = request.getParameter("user_name");
+            User user = jdbcUserRepository.getUser(userName, password);
+            int id = Integer.parseInt(request.getParameter("id"));
             String emailAddress = request.getParameter("email_address");
+            user.setId(id);
             user.setUserName(userName);
             user.setEmailAddress(emailAddress);
             jdbcUserRepository.updateUser(user);

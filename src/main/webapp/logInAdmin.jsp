@@ -11,7 +11,7 @@
 <body>
 <h1>Login</h1>
     <form action="getAdmin.jsp">
-    <strong>User ID:</strong><input type="text" name="id"/><br/><br/>
+    <strong>User Name:</strong><input type="text" name="userName"/><br/><br/>
     <strong>Password:</strong><input type="password" name="password"/><br/><br/>
     <input type="submit" value="Log in!" class="btn btn-primary btn-block"/>
     </form>

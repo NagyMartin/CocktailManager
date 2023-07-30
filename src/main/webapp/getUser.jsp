@@ -13,16 +13,17 @@
 </head>
 <body>
 <h1>Welcome to the mix!</h1>
-    <%  int id = Integer.parseInt(request.getParameter("id"));
+    <%  String userName = request.getParameter("userName");
         String password = request.getParameter("password");
-        if(id == 0 || "".equals(id) || password == null || "".equals(password)){
+        if(userName == null || "".equals(userName) || password == null || "".equals(password)){
            throw new ServletException("Data entered is empty");
         }
         JdbcUserRepository userRepository = new JdbcUserRepository();
-        User user = userRepository.getUser(id, password);
+        User user = userRepository.getUser(userName, password);
         if(user.getUserName() == null){
             throw new RuntimeException("User does not exist!");
         }
+        int id = user.getId();
     %>
 <h2> Hello there, user <%= user.getUserName() %></h2>
     <br></br>

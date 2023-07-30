@@ -11,8 +11,8 @@ public class GetUserServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         JdbcUserRepository userRepository = new JdbcUserRepository();
-        int id = Integer.parseInt(request.getParameter("id"));
+        String userName = request.getParameter("user_name");
         String password = request.getParameter("password");
-        userRepository.getUser(id, password);
+        userRepository.getUser(userName, password);
     }
 }
