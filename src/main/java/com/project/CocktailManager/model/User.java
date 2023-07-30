@@ -67,5 +67,10 @@ public class User {
         this.password = password;
     }
 
+    public User(int id, String userType){
+        this.id = id;
+        this.userType = userType;
+    }
+
 }
 

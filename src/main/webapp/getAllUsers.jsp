@@ -20,6 +20,7 @@
             <th>Email Address</th>
             <th>User Type</th>
             <th>Account Operations</th>
+            <th>Change User Type</th>
         </tr>
         <% JdbcUserRepository repository = new JdbcUserRepository();
             List<User> users = repository.getAllUsers();
@@ -34,11 +35,25 @@
                 <td><%= user.getEmailAddress() %></td>
                 <td><%= user.getUserType() %></td>
                 <td>
-                <% Integer id = user.getId(); %>
-                <input type="button" name ="id" value="Edit user" onclick="window.location='updateUser.jsp'"
-                <% session.setAttribute("id", id); %> >
-                <input type="button" name ="id" value="Delete user" onclick="window.location='deleteUser.jsp'"
-                <% session.setAttribute("id", id); %> >
+                <% int id = user.getId(); %>
+                <form action ="updateUser.jsp">
+                  <input type="hidden" id="id" name="id" value= <%= id %>>
+                  <input type="submit" value="Update user" >
+                  </form>
+                <form action ="deleteUser.jsp">
+                  <input type="hidden" id="id" name="id" value= <%= id %>>
+                  <input type="submit" value="Delete user" >
+                  </form>
+                </td>
+                <td>
+                <form action ="changeUserType.jsp">
+                  <input type="hidden" id="id" name="id" value= <%= id %>>
+                  <select id="userType" name="userType">
+                      <option value="USER">USER</option>
+                      <option value="ADMIN">ADMIN</option>
+                  </select>
+                  <input type="submit" value="Change type" >
+                  </form>
                 </td>
             </tr>
             <% } %>

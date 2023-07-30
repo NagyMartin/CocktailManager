@@ -99,13 +99,13 @@ public class JdbcUserRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                java.lang.String userName = resultSet.getString("user_name");
-                java.lang.String firstName = resultSet.getString("first_name");
-                java.lang.String lastName = resultSet.getString("last_name");
-                java.lang.String emailAddress = resultSet.getString("email_address");
-                java.lang.String password = resultSet.getString("password");
-                String string = String.valueOf(resultSet.getString("user_type"));
-                User user = new User(id, userName, firstName, lastName, emailAddress, password, string);
+                String userName = resultSet.getString("user_name");
+                String firstName = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
+                String emailAddress = resultSet.getString("email_address");
+                String password = resultSet.getString("password");
+                String userType = resultSet.getString("user_type");
+                User user = new User(id, userName, firstName, lastName, emailAddress, password, userType);
                 userList.add(user);
             }
         } catch (SQLException e) {
@@ -130,16 +130,12 @@ public class JdbcUserRepository {
         }
         return updateIsMade;
     }
-    public boolean updateUserByAdmin(User user) {
+    public boolean updateUserTypeByAdmin(User user) {
         boolean updateIsMade = false;
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET user_name = ?, " +
-                     "email_address = ?, password = ?, user_type = ? WHERE id = ?")) {
-            preparedStatement.setString(1, user.getUserName());
-            preparedStatement.setString(2, user.getEmailAddress());
-            preparedStatement.setString(3, user.getPassword());
-            preparedStatement.setString(4, user.getUserType());
-            preparedStatement.setInt(5, user.getId());
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET user_type = ? WHERE id = ?")) {
+            preparedStatement.setString(1, user.getUserType());
+            preparedStatement.setInt(2, user.getId());
             preparedStatement.executeUpdate();
             updateIsMade = true;
         } catch (SQLException e) {

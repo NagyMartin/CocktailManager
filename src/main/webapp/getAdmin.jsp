@@ -32,7 +32,7 @@
             response.sendRedirect("index.jsp");
         }
      %>
-<h2> Hello there, <%= admin.getUserName() %></h2>
+<h2> Hello there, admin <%= admin.getUserName() %></h2>
     <br></br>
     <p><strong>Favorite Cocktails</strong></p>
         <table border="1" class = "table table-striped table-hover w-50 p-3">
@@ -63,9 +63,16 @@
             </td>
             </tr>
             <% } %>
-        </table>
-<h3>Get all users</h3>
+        </table><br></br>
+<h2>Get all users</h2>
     <input type="button" value="See all users" onclick="window.location='getAllUsers.jsp'" >
+    <br></br>
+<h2>Cocktails List</h2>
+    <form action ="getAllCocktails.jsp">
+    <input type="hidden" id="userId" name="userId" value= <%= id %>>
+    <input type="submit" value="Cocktail List">
+    </form>
+    <br></br>
     <input type="button" value="Return to main page!" onclick="window.location='index.jsp'">
 </body>
 </html>

@@ -10,10 +10,7 @@
 <body>
         <%
         JdbcUserRepository jdbcUserRepository = new JdbcUserRepository();
-        int id = (Integer)session.getAttribute("id");
-        if(id == 0 || "".equals(id)){
-           throw new ServletException("User ID does not exist.");
-        }
+        int id = Integer.parseInt(request.getParameter("id"));
         User user = jdbcUserRepository.getUserByID(id);
         %>
 <h1> Hello there, <%= user.getUserName() %> </h1>
@@ -40,12 +37,16 @@
     <br/>
             <input type="submit" value="Update" class="btn btn-primary btn-block"/>
             <%
-            if(newUserName == null || "".equals(newUserName) || newEmailAddress == null ||
-            "".equals(newEmailAddress) || password == null || "".equals(password)){
+            try{
+                if(newUserName == null || "".equals(newUserName) || newEmailAddress == null ||
+                "".equals(newEmailAddress) || password == null || "".equals(password)){
                 throw new ServletException("Data entered is empty.");
-            }
-            User updatedUser = new User(id, newUserName, newEmailAddress, password);
-            jdbcUserRepository.updateUser(updatedUser);
+                }
+                User updatedUser = new User(id, newUserName, newEmailAddress, password);
+                jdbcUserRepository.updateUser(updatedUser);
+                } catch (Exception e){
+                  e.printStackTrace();
+                }
             %>
     </form>
     <br>

@@ -24,9 +24,9 @@
             throw new RuntimeException("User does not exist!");
         }
     %>
-<h2> Hello there, <%= user.getUserName() %></h2>
+<h2> Hello there, user <%= user.getUserName() %></h2>
     <br></br>
-    <p> Favorite Cocktails </p>
+    <p><strong> Favorite Cocktails </strong></p>
     <table border="1" class = "table table-striped table-hover w-50 p-3">
         <tr>
             <th>ID</th>
@@ -60,6 +60,10 @@
     <form action ="getAllCocktails.jsp">
     <input type="hidden" id="userId" name="userId" value= <%= id %>>
     <input type="submit" value="Cocktail List">
+    </form>
+    <form action ="updateUser.jsp">
+    <input type="hidden" id="id" name="id" value= <%= id %>>
+    <input type="submit" value="Update user" >
     </form>
     <br>
     </br>
