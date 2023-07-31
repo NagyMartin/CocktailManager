@@ -12,7 +12,7 @@
 <title>Cocktail Manager User Page</title>
 </head>
 <body>
-<h1>Welcome to the mix!</h1>
+<h1>🔥 Welcome to the mix! 🔥</h1>
     <%  String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         if(userName == null || "".equals(userName) || password == null || "".equals(password)){
@@ -25,9 +25,9 @@
         }
         int id = user.getId();
     %>
-<h2> Hello there, user <%= user.getUserName() %></h2>
+<h2>👋 Hello there, USER <%= user.getUserName() %></h2>
     <br></br>
-    <p><strong> Favorite Cocktails </strong></p>
+    <p><strong>🥃 Favorite Cocktails </strong></p>
     <table border="1" class = "table table-striped table-hover w-50 p-3">
         <tr>
             <th>ID</th>
@@ -41,33 +41,43 @@
         %>
         <tr>
         <td><%= cocktail.getId() %></td>
-        <td><%= cocktail.getName() %></td>
+        <td>🍹<%= cocktail.getName() %></td>
         <td><form action ="getCocktail.jsp">
             <input type="hidden" id="userId" name="userId" value= <%= id %>>
             <input type="hidden" id="cocktailId" name="cocktailId" value= <%= cocktail.getId() %>>
-            <input type="submit" value="Start!">
+            <input type="submit" value="🍊 Start">
             </form>
         </td>
         <td><form action ="deleteCocktailFromUserList.jsp">
             <input type="hidden" id="userId" name="userId" value= <%= id %>>
             <input type="hidden" id="cocktailId" name="cocktailId" value= <%= cocktail.getId() %>>
-            <input type="submit" value="Remove">
+            <input type="submit" value="💣 Remove">
             </form>
         </td>
         </tr>
         <% } %>
     </table>
     <br></br>
+<h2>Cocktails List</h2>
     <form action ="getAllCocktails.jsp">
     <input type="hidden" id="userId" name="userId" value= <%= id %>>
-    <input type="submit" value="Cocktail List">
+    <input type="submit" value="📋 All Cocktails">
     </form>
+    <form action ="getCocktailByBaseIngredient.jsp">
+    <input type="hidden" id="userId" name="userId" value= <%= id %>>
+    <select id="cocktailBaseIngredient" name="cocktailBaseIngredient">
+        <option value="Light Rum">Light Rum</option>
+        <option value="Dark Rum">Dark Rum</option>
+        <option value="Coconut Rum">Coconut Rum</option>
+    </select>
+    <input type="submit" value="Cocktail/Ingredient Search 🔍">
+    <br></br>
     <form action ="updateUser.jsp">
     <input type="hidden" id="id" name="id" value= <%= id %>>
-    <input type="submit" value="Update user" >
+    <input type="submit" value="Update user 💾" >
     </form>
     <br>
     </br>
-    <input type="button" value="Return to main page!" onclick="window.location='index.jsp'">
+    <input type="button" value="Return 🔙" onclick="window.location='index.jsp'">
 </body>
 </html>

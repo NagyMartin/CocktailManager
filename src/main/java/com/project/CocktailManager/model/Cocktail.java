@@ -30,6 +30,9 @@ public class Cocktail {
     private String measureAdditionalIngredient4;
     private String measureAdditionalIngredient5;
     private String instructions;
+
+    private String[] ingredients;
+    private String[] measurements;
     @ManyToMany(fetch = FetchType.LAZY)
     private List<User> userList;
     public Cocktail(){
@@ -60,6 +63,13 @@ public class Cocktail {
         this.measureAdditionalIngredient3 = measureAdditionalIngredient3;
         this.measureAdditionalIngredient4 = measureAdditionalIngredient4;
         this.measureAdditionalIngredient5 = measureAdditionalIngredient5;
+        this.instructions = instructions;
+    }
+    public Cocktail(int id, String name, String[] ingredients, String[] measurements, String instructions){
+        this.id = id;
+        this.name = name;
+        this.ingredients = ingredients;
+        this.measurements = measurements;
         this.instructions = instructions;
     }
 }

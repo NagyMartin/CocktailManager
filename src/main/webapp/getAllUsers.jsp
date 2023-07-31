@@ -17,7 +17,7 @@
            throw new RuntimeException("User does not have permission");
         }
     %>
-<h1>Users from Cocktail Manager <%= admin.getUserName() %></h1>
+<h1>📋 Users from Cocktail Manager 📋</h1>
     <table border="1" class = "table table-striped table-hover w-50 p-3">
         <tr>
             <th>ID</th>
@@ -35,7 +35,7 @@
             %>
             <tr>
                 <td><%= user.getId() %></td>
-                <td><%= user.getUserName() %></td>
+                <td>👤<%= user.getUserName() %></td>
                 <td><%= user.getPassword() %></td>
                 <td><%= user.getFirstName() %></td>
                 <td><%= user.getLastName() %></td>
@@ -45,11 +45,11 @@
                 <% int id = user.getId(); %>
                 <form action ="updateUser.jsp">
                   <input type="hidden" id="id" name="id" value= <%= id %>>
-                  <input type="submit" value="Update user" >
+                  <input type="submit" value="Update user 💾" >
                   </form>
                 <form action ="deleteUser.jsp">
                   <input type="hidden" id="id" name="id" value= <%= id %>>
-                  <input type="submit" value="Delete user" >
+                  <input type="submit" value="Delete user 💣" >
                   </form>
                 </td>
                 <td>
@@ -59,7 +59,7 @@
                       <option value="USER">USER</option>
                       <option value="ADMIN">ADMIN</option>
                   </select>
-                  <input type="submit" value="Change type" >
+                  <input type="submit" value="Change type ⏫" >
                   </form>
                 </td>
             </tr>
@@ -67,6 +67,6 @@
     </table>
     <br>
     </br>
-    <input type="button" value="Return to main page!" onclick="window.location='index.jsp'">
+    <input type="button" value="Return to main page 🔙" onclick="window.location='index.jsp'">
 </body>
 </html>

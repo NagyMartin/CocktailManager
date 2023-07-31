@@ -3,8 +3,8 @@
 
 <html>
 <body>
-<h1>Complete the below form to create a profile!</h1>
-<p>Rows marked with an asterisk symbol(*), have conditions, press them in order to be displayed</p>
+<h1>📋 Complete the below form to create a profile 📋</h1>
+<p>❗️ Rows marked with an asterisk symbol(*), have conditions, press them in order to be displayed ❗️</p>
     <form action="addUser.jsp">
         <div class="form-outline mb-4">
         <input type="button" value="User Name" >
@@ -24,9 +24,9 @@
         <input type="button" value="Repeat Password*" onclick="passCondition();">
         <input type="password" name="rePassword" placeholder="Repeat Password" onclick="this.value=''"/><br/>
         <br/>
-        <input type="submit" value="Create profile" class="btn btn-primary btn-block"/>
+        <input type="submit" value="Create profile 🎉" class="btn btn-primary btn-block"/>
     </form>
-    <input type="button" value="Return to main page!" onclick="window.location='index.jsp'">
+    <input type="button" value="Return 🔙" onclick="window.location='index.jsp'">
     <script type="text/javascript">
     function passCondition() {
     alert("Password must contain: A capital(uppercase) & lowercase letter; A number; A special character. "

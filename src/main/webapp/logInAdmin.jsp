@@ -9,13 +9,13 @@
 <title>Cocktail Manager - Admin Login</title>
 </head>
 <body>
-<h1>Login</h1>
+<h1>💻 Login</h1>
     <form action="getAdmin.jsp">
     <strong>User Name:</strong><input type="text" name="userName"/><br/><br/>
     <strong>Password:</strong><input type="password" name="password"/><br/><br/>
-    <input type="submit" value="Log in!" class="btn btn-primary btn-block"/>
+    <input type="submit" value="🔑 Log in" class="btn btn-primary btn-block"/>
     </form>
-    <input type="button" value="Return to main page!" onclick="window.location='index.jsp'">
+    <input type="button" value="Return 🔙" onclick="window.location='index.jsp'">
 </body>
 
 
