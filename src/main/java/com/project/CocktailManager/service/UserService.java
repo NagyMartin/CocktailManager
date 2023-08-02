@@ -6,6 +6,12 @@ import com.project.CocktailManager.repositoryDao.JdbcUserRepository;
 import lombok.Data;
 
 import java.util.regex.Pattern;
+
+/**
+ * Class that has methods to validate a User input, in order to add a correct
+ * User type witch correct fields.
+ * If not correct the methods throw RuntimeExceptions to avoid the collapse of the app.
+ */
 @Data
 public class UserService {
 
@@ -19,18 +25,18 @@ public class UserService {
         if (userDto.getUserName() != null && userDto.getUserName().length() < 3){
             throw new RuntimeException("User name is incorrect. User name length should be at least 3 characters.");
         }
-        java.lang.String nameValidationPattern = "^[A-Z](?=.{3,29}$)[A-Za-z]*(?:\\h+[A-Z][A-Za-z]*)*$";
+        String nameValidationPattern = "^[A-Z](?=.{3,29}$)[A-Za-z]*(?:\\h+[A-Z][A-Za-z]*)*$";
         boolean firstNameIsOk = userDto.getFirstName() != null && Pattern.compile(nameValidationPattern)
                 .matcher(userDto.getFirstName())
                 .matches();
         boolean lastNameIsOk = userDto.getLastName() != null && Pattern.compile(nameValidationPattern)
                 .matcher(userDto.getLastName())
                 .matches();
-        java.lang.String emailValidationPattern = "^(.+)@(.+)$";
+        String emailValidationPattern = "^(.+)@(.+)$";
         boolean emailIsOk = userDto.getEmailAddress() != null && Pattern.compile(emailValidationPattern)
                 .matcher(userDto.getEmailAddress())
                 .matches();
-        java.lang.String passwordValidationPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{5,20}$";
+        String passwordValidationPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{5,20}$";
         boolean passwordIsOk = userDto.getPassword() != null && Pattern.compile(passwordValidationPattern)
                 .matcher(userDto.getPassword())
                 .matches();

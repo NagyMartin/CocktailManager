@@ -3,6 +3,9 @@ package com.project.CocktailManager.model.dto;
 import com.project.CocktailManager.model.User;
 import lombok.Data;
 
+/**
+ * POJO class of type UserDto which is used for some validations.
+ */
 @Data
 public class UserDto {
 

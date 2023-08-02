@@ -10,6 +10,9 @@ import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 
+/**
+ * POJO class of type USER.
+ */
 @AllArgsConstructor
 @Getter
 @Setter

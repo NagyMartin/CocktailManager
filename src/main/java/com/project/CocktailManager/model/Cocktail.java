@@ -5,6 +5,9 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * POJO class of type Cocktail.
+ */
 @AllArgsConstructor
 @Setter
 @Getter

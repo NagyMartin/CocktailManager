@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.project.CocktailManager.model.Cocktail;
-
+/**
+ * DAO class for a JDBC connection type used for the link table between Users and Cocktails.
+ */
 public class JdbcUsersCocktailsRepository {
     public JdbcUsersCocktailsRepository() {
         getConnection();

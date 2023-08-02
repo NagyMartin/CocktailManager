@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * DAO class for a JDBC connection type used for the table Cocktails.
+ */
 public class JdbcCocktailRepository {
 
     public JdbcCocktailRepository() {

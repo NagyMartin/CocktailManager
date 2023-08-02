@@ -5,7 +5,9 @@ import com.project.CocktailManager.model.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * DAO class for a JDBC connection type used for the table Users.
+ */
 public class JdbcUserRepository {
     public JdbcUserRepository() {
         getConnection();
