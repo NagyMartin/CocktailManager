@@ -8,6 +8,7 @@
 <title>Cocktail Manager New User</title>
 </head>
 <body>
+        <script> alert("User created!") </script>
        <%
          String userName = request.getParameter("userName");
          String firstName = request.getParameter("firstName");
@@ -30,5 +31,6 @@
          UserService service = new UserService();
          service.addUserFromUserService(userDto);
        %>
+       <input type="button" style="text-align: center;" value="Return" onclick="window.location='index.jsp'" </button>
 </body>
 </html>

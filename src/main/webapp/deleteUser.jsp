@@ -14,5 +14,6 @@
                         e.printStackTrace();
                 }
         %>
+        <input type="button" value="Return" onclick="history.go(-2)" </button>
 </body>
 </html>

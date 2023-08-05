@@ -5,6 +5,7 @@
 <%@ page import="com.project.CocktailManager.repositoryDao.JdbcUserRepository" %>
 <%@ page import="com.project.CocktailManager.model.User" %>
 <%@ page errorPage="error.jsp"%>
+
       <% JdbcUsersCocktailsRepository linkedRepository = new JdbcUsersCocktailsRepository();
          int userId = Integer.parseInt(request.getParameter("userId"));
          int cocktailId = Integer.parseInt(request.getParameter("cocktailId"));
@@ -16,4 +17,4 @@
          String userType = user.getUserType();
       %>
 
-      <meta http-equiv="Refresh" content="0; url=/CocktailManager/getUser.jsp?userName=<%= userName %>&password=<%= password %>" />
+      <meta http-equiv="Refresh" content="0; url=/CocktailManager/getAdmin.jsp?userName=<%= userName %>&password=<%= password %>" />

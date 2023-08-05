@@ -9,9 +9,28 @@
 <%@ page import="com.project.CocktailManager.repositoryDao.JdbcUsersCocktailsRepository" %>
 <html>
 <head>
+<style>
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://img.freepik.com/free-photo/fresh-cocktails-with-lime-fruit-table-generative-ai_188544-12368.jpg?size=626&ext=jpg&ga=GA1.2.124570723.1691114028&semt=ais');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.main{
+  text-align: center;
+  color: white;
+}
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <title>Cocktail Manager User Page</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
 </head>
 <body>
+<div class="main" style="text-align: center;">
 <h1>🔥 Welcome to the mix! 🔥</h1>
     <%  String userName = request.getParameter("userName");
         String password = request.getParameter("password");
@@ -25,10 +44,12 @@
         }
         int id = user.getId();
     %>
+<br></br>
 <h2>👋 Hello there, USER <%= user.getUserName() %></h2>
     <br></br>
-    <p><strong>🥃 Favorite Cocktails </strong></p>
-    <table border="1" class = "table table-striped table-hover w-50 p-3">
+    <div id="favCocktails" style="text-align: center;">
+    <h2><strong>🥃 Favorite Cocktails </strong></h2>
+    <table border="1" class = "table table-striped table-hover w-50 p-3" style="margin: 0 auto;text-align:center">
         <tr>
             <th>ID</th>
             <th>Cocktail Name</th>
@@ -41,27 +62,29 @@
         %>
         <tr>
         <td><%= cocktail.getId() %></td>
-        <td>🍹<%= cocktail.getName() %></td>
+        <td><strong>🍹<%= cocktail.getName() %></strong></td>
         <td><form action ="getCocktail.jsp">
             <input type="hidden" id="userId" name="userId" value= <%= id %>>
             <input type="hidden" id="cocktailId" name="cocktailId" value= <%= cocktail.getId() %>>
-            <input type="submit" value="🍊 Start">
+            <input type="submit" value="🍊 Start" class="btn btn-outline-success">
             </form>
         </td>
         <td><form action ="deleteCocktailFromUserList.jsp">
             <input type="hidden" id="userId" name="userId" value= <%= id %>>
             <input type="hidden" id="cocktailId" name="cocktailId" value= <%= cocktail.getId() %>>
-            <input type="submit" value="💣 Remove">
+            <input type="hidden" id="password" name="password" value= <%= password %>>
+            <input type="submit" value="💣 Remove" class="btn btn-outline-danger">
             </form>
         </td>
         </tr>
         <% } %>
     </table>
-    <br></br>
+    </div>
+<div>
 <h2>Cocktails List</h2>
     <form action ="getAllCocktails.jsp">
     <input type="hidden" id="userId" name="userId" value= <%= id %>>
-    <input type="submit" value="📋 All Cocktails">
+    <input type="submit" value="📋 All Cocktails" class="btn btn-outline-primary">
     </form>
     <form action ="getCocktailByBaseIngredient.jsp">
     <input type="hidden" id="userId" name="userId" value= <%= id %>>
@@ -70,14 +93,18 @@
         <option value="Dark Rum">Dark Rum</option>
         <option value="Coconut Rum">Coconut Rum</option>
     </select>
-    <input type="submit" value="Cocktail/Ingredient Search 🔍">
+    <input type="submit" value="Cocktail/Ingredient Search 🔍" class="btn btn-outline-primary">
+    </form>
+</div>
     <br></br>
-    <form action ="updateUser.jsp">
+    <form action ="updateUser.jsp" style="text-align: center;">
     <input type="hidden" id="id" name="id" value= <%= id %>>
-    <input type="submit" value="Update user 💾" >
+    <input type="submit" value="Update user 💾" class="btn btn-outline-secondary" >
     </form>
     <br>
     </br>
-    <input type="button" value="Return 🔙" onclick="window.location='index.jsp'">
+</div>
+    <input type="button" value="Return 🔙" onclick="window.location='index.jsp'" class="btn btn-outline-secondary">
 </body>
 </html>
+
