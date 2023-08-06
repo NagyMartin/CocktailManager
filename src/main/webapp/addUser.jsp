@@ -22,7 +22,7 @@
             password == null || "".equals(password)){
                     throw new ServletException("Data entered is empty");
          }
-         if(password != rePassword){
+         if(!password.equals(rePassword)){
             throw new RuntimeException("Password does not match");
          }
          User user = new User(userName, firstName, lastName, emailAddress, password, userType);

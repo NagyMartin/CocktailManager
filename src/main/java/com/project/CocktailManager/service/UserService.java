@@ -36,7 +36,7 @@ public class UserService {
         boolean emailIsOk = userDto.getEmailAddress() != null && Pattern.compile(emailValidationPattern)
                 .matcher(userDto.getEmailAddress())
                 .matches();
-        String passwordValidationPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{5,20}$";
+        String passwordValidationPattern = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
         boolean passwordIsOk = userDto.getPassword() != null && Pattern.compile(passwordValidationPattern)
                 .matcher(userDto.getPassword())
                 .matches();
@@ -53,6 +53,7 @@ public class UserService {
     }
 
     public void addUserFromUserService(UserDto userDto){
+        JdbcUserRepository jdbcUserRepository = new JdbcUserRepository();
         if(!validateUserData(userDto)){
             throw new RuntimeException("Invalid data for user: user name was " + userDto.getUserName() + ", first name was " + userDto.getFirstName() +
                     " ,last name was " + userDto.getLastName() + " email was " + userDto.getEmailAddress() + " ,password was " + userDto.getPassword());

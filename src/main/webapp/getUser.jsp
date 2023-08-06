@@ -20,6 +20,9 @@ body {
   text-align: center;
   color: white;
 }
+.main .table{
+ color: white;
+}
 </style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,6 +34,7 @@ body {
 </head>
 <body>
 <div class="main" style="text-align: center;">
+<h3 class="text-center text-white pt-5"> </h3>
 <h1>🔥 Welcome to the mix! 🔥</h1>
     <%  String userName = request.getParameter("userName");
         String password = request.getParameter("password");
@@ -47,11 +51,11 @@ body {
 <br></br>
 <h2>👋 Hello there, USER <%= user.getUserName() %></h2>
     <br></br>
-    <div id="favCocktails" style="text-align: center;">
+    <div class="table" style="text-align: center;color:white">
     <h2><strong>🥃 Favorite Cocktails </strong></h2>
-    <table border="1" class = "table table-striped table-hover w-50 p-3" style="margin: 0 auto;text-align:center">
+    <table border="1" class = "table w-50 p-3" style="margin: 0 auto;text-align:center;">
         <tr>
-            <th>ID</th>
+            <th>Nº</th>
             <th>Cocktail Name</th>
             <th>Start the mix</th>
             <th>Remove from Favorites</th>
@@ -66,14 +70,14 @@ body {
         <td><form action ="getCocktail.jsp">
             <input type="hidden" id="userId" name="userId" value= <%= id %>>
             <input type="hidden" id="cocktailId" name="cocktailId" value= <%= cocktail.getId() %>>
-            <input type="submit" value="🍊 Start" class="btn btn-outline-success">
+            <input type="submit" value="🍊 Start" class="btn btn-success">
             </form>
         </td>
         <td><form action ="deleteCocktailFromUserList.jsp">
             <input type="hidden" id="userId" name="userId" value= <%= id %>>
             <input type="hidden" id="cocktailId" name="cocktailId" value= <%= cocktail.getId() %>>
             <input type="hidden" id="password" name="password" value= <%= password %>>
-            <input type="submit" value="💣 Remove" class="btn btn-outline-danger">
+            <input type="submit" value="💣 Remove" class="btn btn-danger">
             </form>
         </td>
         </tr>
@@ -84,7 +88,7 @@ body {
 <h2>Cocktails List</h2>
     <form action ="getAllCocktails.jsp">
     <input type="hidden" id="userId" name="userId" value= <%= id %>>
-    <input type="submit" value="📋 All Cocktails" class="btn btn-outline-primary">
+    <input type="submit" value="📋 All Cocktails" class="btn btn-primary">
     </form>
     <form action ="getCocktailByBaseIngredient.jsp">
     <input type="hidden" id="userId" name="userId" value= <%= id %>>
@@ -93,18 +97,19 @@ body {
         <option value="Dark Rum">Dark Rum</option>
         <option value="Coconut Rum">Coconut Rum</option>
     </select>
-    <input type="submit" value="Cocktail/Ingredient Search 🔍" class="btn btn-outline-primary">
+    <input type="submit" value="Cocktail/Ingredient Search 🔍" class="btn btn-primary">
     </form>
 </div>
     <br></br>
-    <form action ="updateUser.jsp" style="text-align: center;">
+    <form action ="updateUserForm.jsp" style="text-align: center;">
     <input type="hidden" id="id" name="id" value= <%= id %>>
-    <input type="submit" value="Update user 💾" class="btn btn-outline-secondary" >
+    <input type="submit" value="Update user 💾" class="btn btn-secondary" >
     </form>
     <br>
     </br>
 </div>
-    <input type="button" value="Return 🔙" onclick="window.location='index.jsp'" class="btn btn-outline-secondary">
+    <input type="button" value="Main page 🏡" onclick="window.location='index.jsp'" class="btn btn-success">
+    <input type="button" value="Back 🔙" class="btn btn-secondary" onclick="history.go(-1)" </button>
 </body>
 </html>
 

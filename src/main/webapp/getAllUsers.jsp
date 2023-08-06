@@ -6,6 +6,21 @@
 <%@ page errorPage="error.jsp"%>
 <html>
 <head>
+<style>
+.main{
+  text-align: center;
+  color: white;
+}
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://img.freepik.com/premium-photo/cyberpunk-colorful-bar-pub-painting_708558-202.jpg?size=626&ext=jpg&ga=GA1.2.124570723.1691114028&semt=ais');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.main .table{
+ color: white;
+}
+</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Cocktail Manager Users</title>
@@ -25,7 +40,7 @@
     %>
 <h1>📋 Users from Cocktail Manager 📋</h1>
 <br></br>
-    <table border="1" class = "table table-striped table-hover w-50 p-3" style="margin: 0 auto;text-align:center">
+    <table border="1" class = "table w-50 p-3" style="margin: 0 auto;text-align:center">
         <tr>
             <th>ID</th>
             <th>User Name</th>
@@ -50,13 +65,13 @@
                 <td><%= user.getUserType() %></td>
                 <td>
                 <% int id = user.getId(); %>
-                <form action ="updateUser.jsp">
+                <form action ="updateUserForm.jsp">
                   <input type="hidden" id="id" name="id" value= <%= id %>>
-                  <input type="submit" value="Update user 💾" class="btn btn-outline-secondary">
+                  <input type="submit" value="Update user 💾" class="btn btn-secondary">
                   </form>
                 <form action ="deleteUser.jsp">
                   <input type="hidden" id="id" name="id" value= <%= id %>>
-                  <input type="submit" value="Delete user 💣" class="btn btn-outline-danger">
+                  <input type="submit" value="Delete user 💣" class="btn btn-danger">
                   </form>
                 </td>
                 <td>
@@ -66,7 +81,7 @@
                       <option value="USER">USER</option>
                       <option value="ADMIN">ADMIN</option>
                   </select>
-                  <input type="submit" value="Change type ⏫" class="btn btn-outline-primary">
+                  <input type="submit" value="Change type ⏫" class="btn btn-primary">
                   </form>
                 </td>
             </tr>
@@ -74,7 +89,8 @@
     </table>
     <br>
     </br>
-    <input type="button" value="Return to main page 🔙" onclick="window.location='index.jsp'" class="btn btn-outline-secondary">
+    <input type="button" value="Main page 🏡" onclick="window.location='index.jsp'" class="btn btn-success">
+    <input type="button" value="Back 🔙" class="btn btn-secondary" onclick="history.go(-1)" </button>
 </div>
 </body>
 </html>

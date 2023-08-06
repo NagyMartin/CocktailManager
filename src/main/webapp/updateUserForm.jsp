@@ -25,26 +25,34 @@ body {
 <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
 </head>
 <body>
-        <script> alert("User is updated!") </script>
         <%
         JdbcUserRepository jdbcUserRepository = new JdbcUserRepository();
         int id = Integer.parseInt(request.getParameter("id"));
         User user = jdbcUserRepository.getUserByID(id);
-        String newUserName = request.getParameter("userName");
-        String newEmailAddress = request.getParameter("emailAddress");
-        String password = request.getParameter("password");
-            try{
-                if(newUserName == null || "".equals(newUserName) || newEmailAddress == null ||
-                "".equals(newEmailAddress) || password == null || "".equals(password)){
-                throw new ServletException("Data entered is empty.");
-                }
-                User updatedUser = new User(id, newUserName, newEmailAddress, password);
-                jdbcUserRepository.updateUser(updatedUser);
-                } catch (Exception e){
-                  e.printStackTrace();
-                }
-            %>
-
-        <meta http-equiv="Refresh" content="0; url=/CocktailManager/index.jsp" />
+        %>
+<div style="text-align:center" class="main">
+<h3 class="text-center text-white pt-5"> </h3>
+<h1><strong>👋 Hello there, <%= user.getUserName() %> </strong></h1>
+    <br></br>
+    <p>-- Complete the below form to update your profile --</p>
+    <form action="updateUser.jsp">
+        <div class="form-outline mb-4">
+            <strong>UserName:</strong><input type="text" name="userName" value="New User Name..." onclick="this.value=''"/><br/>
+        </div>
+        <div class="form-outline mb-4">
+            <strong>Email:</strong><input type="text" name="emailAddress"  value="New Email..." onclick="this.value=''"/><br/>
+        </div>
+        <div class="form-outline mb-4">
+             <strong>Password:</strong><input type="text" name="password"  value="New password..." onclick="this.value=''"/><br/>
+             </div>
+    <br/>
+            <input type="hidden" id="id" name="id" value= <%= id %>>
+            <input type="submit" value="Update✔️" class="btn btn-success" />
+    </form>
+    <br>
+    </br>
+    <input type="button" value="Main page 🏡" onclick="window.location='index.jsp'" class="btn btn-success">
+    <input type="button" value="Back 🔙" class="btn btn-secondary" onclick="history.go(-1)" </button>
+</div>
 </body>
 </html>
