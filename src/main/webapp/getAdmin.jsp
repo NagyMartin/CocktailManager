@@ -107,6 +107,10 @@ body {
         <option value="Light Rum">Light Rum</option>
         <option value="Dark Rum">Dark Rum</option>
         <option value="Coconut Rum">Coconut Rum</option>
+        <option value="Vodka">Vodka</option>
+        <option value="Gin">Gin</option>
+        <option value="Tequila">Tequila</option>
+        <option value="Whiskey">Whiskey</option>
     </select>
     <input type="submit" value="Cocktail/Ingredient Search 🔍" class="btn btn-primary">
     </form>

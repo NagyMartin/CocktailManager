@@ -46,6 +46,7 @@ body {
         <tr>
             <th>🍸 Ingredient </th>
             <th>📐 Measurement in order of ingredient </th>
+            <th>😎 Looking good! </th>
         </tr>
         <tr>
             <td>
@@ -60,6 +61,9 @@ body {
                     out.print(" ⚖️ " + measurement + ". ");
                }
             %></td>
+            <td>
+                <img src=<%= cocktail.getCocktailImage()%> height="150" width="150">
+            </td>
         </tr>
     </table>
     <br>

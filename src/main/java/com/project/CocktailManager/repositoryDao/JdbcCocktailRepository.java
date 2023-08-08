@@ -68,11 +68,12 @@ public class JdbcCocktailRepository {
                 String measureAdditionalIngredient4 = resultSet.getString("measure_additional_ingredient4");
                 String measureAdditionalIngredient5 = resultSet.getString("measure_additional_ingredient5");
                 String instructions = resultSet.getString("instructions");
+                String cocktailImage = resultSet.getString("cocktail_image");
                 String[] ingredients = {baseIngredient, additionalIngredient1, additionalIngredient2, additionalIngredient3,
                         additionalIngredient4, additionalIngredient5};
                 String[] measurements = {measureBaseIngredient, measureAdditionalIngredient1, measureAdditionalIngredient2, measureAdditionalIngredient3,
                         measureAdditionalIngredient4, measureAdditionalIngredient5};
-                cocktail = new Cocktail(id, name, ingredients, measurements, instructions);
+                cocktail = new Cocktail(id, name, ingredients, measurements, instructions, cocktailImage);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -101,6 +102,7 @@ public class JdbcCocktailRepository {
                 String measureAdditionalIngredient4 = resultSet.getString("measure_additional_ingredient4");
                 String measureAdditionalIngredient5 = resultSet.getString("measure_additional_ingredient5");
                 String instructions = resultSet.getString("instructions");
+                String cocktailImage = resultSet.getString("cocktail_image");
                 Cocktail cocktail = new Cocktail();
                 cocktail.setId(id);
                 cocktail.setName(name);
@@ -117,6 +119,7 @@ public class JdbcCocktailRepository {
                 cocktail.setMeasureAdditionalIngredient3(measureAdditionalIngredient3);
                 cocktail.setMeasureAdditionalIngredient4(measureAdditionalIngredient4);
                 cocktail.setMeasureAdditionalIngredient5(measureAdditionalIngredient5);
+                cocktail.setCocktailImage(cocktailImage);
                 cocktailList.add(cocktail);
             }
         } catch (SQLException e) {

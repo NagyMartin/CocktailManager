@@ -58,6 +58,8 @@ body {
             </tr>
             <% } %>
     </table>
+    <br></br>
+    <input type="button" value="Back 🔙" class="btn btn-secondary" onclick="history.go(-1)" </button>
 </div>
 </body>
 </html>

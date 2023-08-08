@@ -14,6 +14,18 @@ body {
 .main{
   text-align: center;
   color: white;
+  margin:0 auto;
+}
+.btn {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: gray;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
 }
 </style>
 </head>
@@ -28,8 +40,9 @@ body {
                         e.printStackTrace();
                 }
         %>
+        <h3 class="text-center text-white pt-5"> </h3>
         <div class="main">
-        <input type="button" value="RETURN" onclick="history.go(-2)" </button>
+        <input type="button" class="btn" value="RETURN" onclick="history.go(-2)" </button>
         </div>
 </body>
 </html>
